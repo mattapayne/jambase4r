@@ -33,6 +33,8 @@ Configuration
 Using the JamBase API requires that you register for an API key. Get one here:
 http://developer.jambase.com/member/register
 
+FOR RAILS
+=========
 In an initializer, add the following configuration:
 
 #app_specific_initializers.rb
@@ -40,6 +42,22 @@ In an initializer, add the following configuration:
 JamBase4R.configure do |config|
   config.api_key = "XXXXXXXXXXXXX"
 end
+
+FOR SINATRA
+===========
+
+I would typically configure JamBase4R with a Sinatra configure block.
+
+configure do
+	JamBase4R.configure do |config|
+	  config.api_key = "XXXXXXXXXXXXX"
+	end
+end
+
+FOR OTHERS
+==========
+
+Check the documentation of the framework you are using. All should allow for this type of confiuration.
 
 Example
 =======
