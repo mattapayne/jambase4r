@@ -33,6 +33,9 @@ Configuration
 Using the JamBase API requires that you register for an API key. Get one here:
 http://developer.jambase.com/member/register
 
+JamBase4R is configured via the configure method. The configure method takes a block that is 
+passed a settings object. 2 properties can be set: 1) api_key (required) 2) logger (optional)
+
 FOR RAILS
 =========
 In an initializer, add the following configuration:
@@ -41,6 +44,8 @@ In an initializer, add the following configuration:
 
 JamBase4R.configure do |config|
   config.api_key = "XXXXXXXXXXXXX"
+  config.logger = RAILS_DEFAULT_LOGGER - This is optional if you want to enable logging. You can pass an instance of
+	any class that conforms to the same interface as RAILS_DEFAULT_LOGGER
 end
 
 FOR SINATRA
