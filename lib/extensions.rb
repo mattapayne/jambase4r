@@ -1,6 +1,8 @@
 require 'rubygems' unless defined? RubyGems
 require 'uri' unless defined? URI
 
+#Hack URI::HTTP to include a method that gets us both the path and the querystring
+#since path_query is private
 module URI
   class HTTP < Generic
     def path_with_querystring

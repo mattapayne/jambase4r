@@ -1,5 +1,3 @@
-#Hack URI::HTTP to include a method that gets us both the path and the querystring
-#since path_query is private
 local_path = File.dirname(__FILE__)
 
 [ 'lib/extensions',
