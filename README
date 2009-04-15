@@ -21,6 +21,10 @@ Installation
 1) get and install the gem
 	a) gem sources -a http://gems.github.com (you only have to do this once)
 	b) sudo gem install mattapayne-jambase4r
+	- OR -
+	If using Rails:
+	b) Add config.gem 'mattapayne-jambase4r', :source => 'http://gems.github.com', :lib => "jambase4r"
+	   to your environment.rb file.
 
 
 2) run the jambase4r:install_assets rake task - this ensures that the images
@@ -91,7 +95,7 @@ The general schema of the results is:
 
  - events
  	- event
-       - event_id (String)
+        - event_id (String)
         - event_date (String)
         - event_url (String)
 		- ticket_url (String)
