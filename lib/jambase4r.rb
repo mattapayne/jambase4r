@@ -1,14 +1,14 @@
 local_path = File.dirname(__FILE__)
 
-[ 'lib/extensions',
-  'lib/errors',
-  'lib/http_gateway',
-  'lib/jambase4r_view_helper',
-  'lib/models/model',
-  'lib/models/artist',
-  'lib/models/venue',
-  'lib/models/event',
-  'lib/api'].each { |file| require File.join(local_path, file) }
+[ 'extensions',
+  'errors',
+  'http_gateway',
+  'jambase4r_view_helper',
+  'models/model',
+  'models/artist',
+  'models/venue',
+  'models/event',
+  'api'].each { |file| require File.join(local_path, file) }
   
 
 module JamBase4R
