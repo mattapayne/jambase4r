@@ -23,13 +23,13 @@ Installation
 	b) sudo gem install mattapayne-jambase4r
 	- OR -
 	If using Rails:
-	b) Add config.gem 'mattapayne-jambase4r', :source => 'http://gems.github.com', :lib => "jambase4r"
+	a) Add config.gem 'mattapayne-jambase4r', :source => 'http://gems.github.com', :lib => "jambase4r"
 	   to your environment.rb file.
-
-
-2) run the jambase4r:install_assets rake task - this ensures that the images
-   required by the helpers are in place.
-**NOTE: This functionality is currently under development **
+	b) rake gems:install from your project root
+	c) cd vendor/plugins
+	d) gem unpack mattapayne-jambase4r
+	e) cd ../../
+	f) rake jambase4r:install_assets
 
 Configuration
 =============

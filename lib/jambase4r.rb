@@ -39,6 +39,11 @@ module JamBase4R
     if defined? ActionView
       ActionView::Base.send(:include, JamBase4R::ViewHelper)
     end
+    if defined? Sinatra
+      helpers do
+        include JamBase4R::ViewHelper
+      end
+    end
   end
   
 end
