@@ -11,30 +11,22 @@ module URI
   end
 end
 
-unless Object.instance_methods.include?(:blank?)
+unless defined?(ActiveSupport)
   class Object
     def blank?
       respond_to?(:empty?) ? empty? : !self
     end
-  end
-end
-
-unless Object.instance_methods.include?(:to_param)
-  def to_param
-    to_s
-  end
-end
-
-unless Object.instance_methods.include?(:to_query)
-  class Object
+    
+    def to_param
+      to_s
+    end
+    
     def to_query(key)
       require 'cgi' unless defined?(CGI) && defined?(CGI::escape)
       "#{CGI.escape(key.to_s)}=#{CGI.escape(to_param.to_s)}"
     end
   end
-end
-
-unless Hash.instance_methods.include?(:symbolize_keys)
+  
   class Hash
     def symbolize_keys
       inject({}) do |options, (key, value)|
@@ -42,11 +34,7 @@ unless Hash.instance_methods.include?(:symbolize_keys)
         options
       end
     end
-  end
-end
-
-unless Hash.instance_methods.include?(:to_param)
-  class Hash
+    
     def to_param(namespace=nil)
       collect do |key, value|
         value.to_query(namespace ? "#{namespace}[#{key}]" : key)
