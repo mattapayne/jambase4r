@@ -68,6 +68,16 @@ FOR OTHERS
 
 Check the documentation of the framework you are using. All should allow for this type of confiuration.
 
+ATTRIBUTION
+===========
+JamBase requires that you indicate where your data comes from (attribution). To make this easy, there is a JamBase4R::ViewHelper module that gets automatically included into ActionView::Base if using Rails and into Sinatra's helpers if using Sinatra.
+
+There are a couple of methods:
+1) jambase_text_attribution(text=nil, link_options={}, span_options={})
+	text defaults to: 'Concert information provided by JamBase'
+2) jambase_image_attribution(image_options={}, :link_options={})
+3) jambase_flavicon(image_options={}, :link_options={})
+
 Example
 =======
 
