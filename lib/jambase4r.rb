@@ -1,7 +1,7 @@
 local_path = File.dirname(__FILE__)
 
 [ 'extensions',
-  'errors',
+  'utility',
   'http_gateway',
   'jambase4r_view_helper',
   'models/model',
@@ -12,6 +12,7 @@ local_path = File.dirname(__FILE__)
   
 
 module JamBase4R
+  extend Utility
   
   @@api_key = nil
   @@logger = nil
@@ -35,6 +36,7 @@ module JamBase4R
   def self.configure(&block)
     raise ArgumentError.new("A block is expected.") unless block_given?
     block.call(self)
+    log_error("You must supply an API key.") if api_key.blank?
     raise ArgumentError.new("You must supply an api key.") if api_key.blank?
     if defined? ActionView
       ActionView::Base.send(:include, JamBase4R::ViewHelper)

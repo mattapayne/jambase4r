@@ -3,6 +3,7 @@ require "rexml/document"
 module JamBase4R
   class API
     class << self
+      include Utility
       
       API_URL = "http://api.jambase.com/search".freeze
       JAMBASE_PARAMETERS = [:zip, :radius, :band].freeze
@@ -48,7 +49,7 @@ module JamBase4R
 
       def check_api_key
         if JamBase4R.api_key.blank?
-          log_info("No API key has been set for JamBase. Please set it before attempting to use the service.")
+          log_error("No API key has been set for JamBase. Please set it before attempting to use the service.")
           raise ArgumentError.new("No JamBase API key configured. Please configure JamBase4R before using.")
         end
       end
@@ -65,6 +66,7 @@ module JamBase4R
     
       def check_for_alias_and_real_param!(options, alias_param, real_param)
         unless options[real_param].blank?
+          log_error("Cannot have both #{alias_param} and #{real_param} in search.")
           raise ArgumentError.new("Cannot have both #{alias_param} and #{real_param}.")
         end
       end
@@ -85,17 +87,17 @@ module JamBase4R
       end
     
       def convert(xml)
-        results = []
-        return results if xml.blank?
-        doc = REXML::Document.new(xml)
-        doc.elements.each("//event") do |event|
-          results << Event.new(event)
+        begin
+          results = []
+          return results if xml.blank?
+          doc = REXML::Document.new(xml)
+          doc.elements.each("//event") do |event|
+            results << Event.new(event)
+          end
+        rescue Exception => e
+          log_error(e.message)
         end
         results
-      end
-      
-      def log_info(msg)
-        JamBase4R.logger.info(msg) if JamBase4R.logger
       end
       
     end

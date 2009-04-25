@@ -2,8 +2,19 @@ require 'net/http'
 
 module JamBase4R
   
+  class JamBaseError < StandardError
+    
+    attr_reader :message, :response_code
+    
+    def initialize(message, response_code=nil)
+      @message = message
+      @response_code = response_code
+    end
+    
+  end
+  
   class HttpGateway
-    include Errors
+    include Utility
     
     def get(url)
       log_info("#{self.class.name} - Performing GET with URL: #{url}.")
@@ -12,44 +23,21 @@ module JamBase4R
       response = Net::HTTP.start(url.host, url.port) { |http| http.request(request) }
       handle_response(response)
     rescue Timeout::Error => e
-      raise TimeoutError.new(e.message)
+      log_error("Connection to JamBase timed out: #{e.message}")
+      raise JamBaseError.new(e.message)
     end
     
     private
     
     def handle_response(response)
       case response.code.to_i
-      when 301,302
-        raise(Redirection.new(response))
       when 200...400
         response
-      when 400
-        raise(BadRequest.new(response))
-      when 401
-        raise(UnauthorizedAccess.new(response))
-      when 403
-        raise(ForbiddenAccess.new(response))
-      when 404
-        raise(ResourceNotFound.new(response))
-      when 405
-        raise(MethodNotAllowed.new(response))
-      when 409
-        raise(ResourceConflict.new(response))
-      when 422
-        raise(ResourceInvalid.new(response))
-      when 401...500
-        raise(ClientError.new(response))
-      when 500...600
-        raise(ServerError.new(response))
       else
-        raise(ConnectionError.new(response, "Unknown response code: #{response.code}"))
+        log_error("Unexpect response occurred. Code: #{response.code}, Message: #{response.body}")
+        raise(JamBaseError.new(response.body, response.code))
       end
-    end
-      
-    def log_info(msg)
-      JamBase4R.logger.info(msg) if JamBase4R.logger
-    end
-    
+    end    
   end
   
 end

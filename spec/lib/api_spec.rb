@@ -14,6 +14,14 @@ describe JamBase4R::API do
     JamBase4R::API.should respond_to(:search_by_zipcode)
   end
   
+  it "should respond_to? log_error" do
+    JamBase4R::API.should respond_to(:log_error)
+  end
+  
+  it "should respond_to? log_info" do
+    JamBase4R::API.should respond_to(:log_info)
+  end
+  
   describe "search" do
     
     before(:each) do

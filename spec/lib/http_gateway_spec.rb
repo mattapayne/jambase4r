@@ -12,6 +12,14 @@ describe JamBase4R::HttpGateway do
     @resp.stub!(:body).and_return("gdfgdfgdfgdfgfgdgdf")
   end
   
+  it "should respond_to? log_error" do
+    @gate.should respond_to(:log_error)
+  end
+  
+  it "should respond_to? log_info" do
+    @gate.should respond_to(:log_info)
+  end
+  
   it "should use the Net::HTTP::Get class to get" do
     get = Net::HTTP::Get.new(URI.parse(GET_URL).path_with_querystring)
     Net::HTTP.stub!(:start).and_return(@resp)

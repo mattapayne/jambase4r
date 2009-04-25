@@ -1,8 +1,8 @@
 require 'rubygems' unless defined? RubyGems
 require 'spec'
-local_dir = File.join(File.dirname(__FILE__), "..")
+local_dir = File.join(File.dirname(__FILE__), "..", "lib")
 require File.join(local_dir, 'jambase4r')
- 
+
 Spec::Runner.configure do |config|
 
 end
