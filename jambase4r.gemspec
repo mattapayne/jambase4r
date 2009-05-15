@@ -1,7 +1,7 @@
 #The GemSpec to build the gem
 Gem::Specification.new do |s|
   s.name = 'jambase4r'
-  s.version = '1.1.1'
+  s.version = '1.1.2'
   s.date = "2009-05-15"
   s.summary = "Ruby JamBase API library."
   s.description = %{A Ruby library use to access the JamBase API.}
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = "matt@mattpayne.ca"
   s.homepage = "http://mattpayne.ca"
   s.files = [
-    'README', 'tasks/jambase4r_tasks.rake', 'jambase4r.gemspec', 'lib/jambase4r.rb', 'lib/utility.rb', 'lib/api.rb', 
+    'README', 'jambase4r.gemspec', 'lib/jambase4r.rb', 'lib/utility.rb', 'lib/api.rb', 
     'lib/extensions.rb', 'lib/http_gateway.rb', 'lib/jambase4r_view_helper.rb', 'lib/models/model.rb', 
     'lib/models/artist.rb', 'lib/models/venue.rb', 'lib/models/event.rb'
   ]
