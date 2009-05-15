@@ -26,10 +26,6 @@ Installation
 	a) Add config.gem 'mattapayne-jambase4r', :source => 'http://gems.github.com', :lib => "jambase4r"
 	   to your environment.rb file.
 	b) rake gems:install from your project root
-	c) cd vendor/plugins
-	d) gem unpack mattapayne-jambase4r
-	e) cd ../../
-	f) rake jambase4r:install_assets
 
 Configuration
 =============
@@ -66,7 +62,7 @@ end
 FOR OTHERS
 ==========
 
-Check the documentation of the framework you are using. All should allow for this type of confiuration.
+Check the documentation of the framework you are using. All should allow for this type of configuration.
 
 ATTRIBUTION
 ===========
