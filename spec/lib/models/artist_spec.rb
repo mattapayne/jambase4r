@@ -9,7 +9,7 @@ describe JamBase4R::Artist do
     id_value = mock("ID Value")
     expect ? id_value.should_receive(:value).and_return(10) : id_value.should_not_receive(:value)
     id = mock("Artist ID")
-    expect ? id.should_receive(:get_text).and_return(id_value) : id.should_not_receive(:get_text)
+    expect ? id.should_receive(:get_text).at_least(1).times.and_return(id_value) : id.should_not_receive(:get_text)
     
     expect ? e.should_receive(:get_elements).with("artist_id").and_return([id]) : 
       e.should_not_receive(:get_elements).with("artist_id")
@@ -17,7 +17,7 @@ describe JamBase4R::Artist do
     name_value = mock("Name Value")
     expect ? name_value.should_receive(:value).and_return("Joe Artist") : name_value.should_not_receive(:value)
     name = mock("Artist Name")
-    expect ? name.should_receive(:get_text).and_return(name_value) : name.should_not_receive(:get_text)
+    expect ? name.should_receive(:get_text).at_least(1).times.and_return(name_value) : name.should_not_receive(:get_text)
     
     expect ? e.should_receive(:get_elements).with("artist_name").and_return([name]) : 
       e.should_not_receive(:get_elements).with("artist_name")

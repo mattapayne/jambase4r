@@ -10,7 +10,7 @@ describe JamBase4R::Venue do
     id_value = mock("ID Value")
     expect ? id_value.should_receive(:value).and_return(10) : id_value.should_not_receive(:value)
     id = mock("Venue ID")
-    expect ? id.should_receive(:get_text).and_return(id_value) : id.should_not_receive(:get_text)
+    expect ? id.should_receive(:get_text).at_least(1).times.and_return(id_value) : id.should_not_receive(:get_text)
     
     expect ? e.should_receive(:get_elements).with("venue_id").and_return([id]) : 
       e.should_not_receive(:get_elements).with("venue_id")
@@ -20,7 +20,7 @@ describe JamBase4R::Venue do
     expect ? name_value.should_receive(:value).and_return("A Venue") : 
       name_value.should_not_receive(:value)
     name = mock("Name")
-    expect ? name.should_receive(:get_text).and_return(name_value) : 
+    expect ? name.should_receive(:get_text).at_least(1).times.and_return(name_value) : 
       name.should_not_receive(:get_text)
     
     expect ? e.should_receive(:get_elements).with("venue_name").and_return([name]) : 
@@ -31,7 +31,7 @@ describe JamBase4R::Venue do
     expect ? city_value.should_receive(:value).and_return("Denver") : 
       city_value.should_not_receive(:value)
     city = mock("City")
-    expect ? city.should_receive(:get_text).and_return(city_value) : 
+    expect ? city.should_receive(:get_text).at_least(1).times.and_return(city_value) : 
       city.should_not_receive(:get_text)
 
     expect ? e.should_receive(:get_elements).with("venue_city").and_return([city]) : 
@@ -42,7 +42,7 @@ describe JamBase4R::Venue do
     expect ? state_value.should_receive(:value).and_return("Colorado") : 
       state_value.should_not_receive(:value)
     state = mock("State")
-    expect ? state.should_receive(:get_text).and_return(state_value) : 
+    expect ? state.should_receive(:get_text).at_least(1).times.and_return(state_value) : 
       state.should_not_receive(:get_text)
 
     expect ? e.should_receive(:get_elements).with("venue_state").and_return([state]) : 
@@ -53,7 +53,7 @@ describe JamBase4R::Venue do
     expect ? zip_value.should_receive(:value).and_return("90210") : 
       zip_value.should_not_receive(:value)
     zip = mock("Zip")
-    expect ? zip.should_receive(:get_text).and_return(zip_value) : 
+    expect ? zip.should_receive(:get_text).at_least(1).times.and_return(zip_value) : 
       zip.should_not_receive(:get_text)
 
     expect ? e.should_receive(:get_elements).with("venue_zip").and_return([zip]) : 

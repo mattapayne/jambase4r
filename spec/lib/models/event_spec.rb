@@ -10,7 +10,7 @@ describe JamBase4R::Event do
     id_value = mock("ID Value")
     expect ? id_value.should_receive(:value).and_return(10) : id_value.should_not_receive(:value)
     id = mock("Event ID")
-    expect ? id.should_receive(:get_text).and_return(id_value) : id.should_not_receive(:get_text)
+    expect ? id.should_receive(:get_text).at_least(1).times.and_return(id_value) : id.should_not_receive(:get_text)
     
     expect ? e.should_receive(:get_elements).with("event_id").and_return([id]) : 
       e.should_not_receive(:get_elements).with("event_id")
@@ -20,7 +20,7 @@ describe JamBase4R::Event do
     expect ? ticket_url_value.should_receive(:value).and_return("http://test.ca") : 
       ticket_url_value.should_not_receive(:value)
     ticket_url = mock("Ticket Url")
-    expect ? ticket_url.should_receive(:get_text).and_return(ticket_url_value) : 
+    expect ? ticket_url.should_receive(:get_text).at_least(1).times.and_return(ticket_url_value) : 
       ticket_url.should_not_receive(:get_text)
     
     expect ? e.should_receive(:get_elements).with("ticket_url").and_return([ticket_url]) : 
@@ -31,7 +31,7 @@ describe JamBase4R::Event do
     expect ? event_url_value.should_receive(:value).and_return("http://test.ca") : 
       event_url_value.should_not_receive(:value)
     event_url = mock("Event Url")
-    expect ? event_url.should_receive(:get_text).and_return(event_url_value) : 
+    expect ? event_url.should_receive(:get_text).at_least(1).times.and_return(event_url_value) : 
       event_url.should_not_receive(:get_text)
 
     expect ? e.should_receive(:get_elements).with("event_url").and_return([event_url]) : 
@@ -42,7 +42,7 @@ describe JamBase4R::Event do
     expect ? date_value.should_receive(:value).and_return("10/21/2009") : 
       date_value.should_not_receive(:value)
     date = mock("Event Date")
-    expect ? date.should_receive(:get_text).and_return(date_value) : 
+    expect ? date.should_receive(:get_text).at_least(1).times.and_return(date_value) : 
       date.should_not_receive(:get_text)
 
     expect ? e.should_receive(:get_elements).with("event_date").and_return([date]) : 

@@ -2,27 +2,21 @@ module JamBase4R
   
   module ViewHelper
     
-    def jambase_text_attribution(text=nil, link_options={}, span_options={})
-      link_options = {:target => "_blank"}.merge(link_options)
-      text = "*Concert information provided by " if text.blank?
-      content_tag(:span, "#{text}#{link_to('JamBase', 'http://www.jambase.com', 
-        link_options)}", span_options)
+    def jambase_text_attribution
+      %{**Concert information provided by <a href="http://www.jambase.com">JamBase</a>**}
     end
     
-    def jambase_image_attribution(image_options={}, link_options={})
-      link_options = {:title => "JamBase Concert Search", 
-        :target => "_blank"}.merge(link_options)
-      image_options = {:alt => "Search JamBase Concerts",
-        :border => "0"}.merge(image_options)
-      link_to(image_tag("jambase140x70.gif", image_options), 
-        'http://www.jambase.com', link_options)
+    def jambase_image_attribution
+      %{<a href="http://www.JamBase.com" target="_top" title="JamBase Concert Search">
+          <img src= "http://images.jambase.com/logos/jambase140x70.gif" alt="Search JamBase Concerts" border="0" />
+        </a>}
     end
     
-    def jambase_favicon(image_options={}, link_options={})
-      link_options = {:target => "_blank"}.merge(link_options)
-      image_options = {:alt => "JamBase", :border => "0"}.merge(image_options)
-      link_to(image_tag("jambase_favicon.ico", image_options), 
-        "http://www.jambase.com", link_options)
+    def jambase_favicon
+      %{<a href="http://www.JamBase.com" target="_top" title="JamBase Concert Search">
+          <img src= "http://www.jambase.com/favicon.ico" alt="Search JamBase Concerts" border="0" />
+        </a>
+      }
     end
     
   end
