@@ -90,16 +90,19 @@ All methods return an instance of an Array, which contains zero or more Event ob
 1) JamBase4R::API.search(options)
 2) JamBase4R::API.search_by_artist(artist_name, additional_options={})
 3) JamBase4R::API.search_by_zipcode(zipcode, additional_options={})
+4) JamBase4R::API.search_by_user(user, additional_options={})
 
 Possible options:
 
 :band (or :artist (an alias for :band)) => The name of the band to search for.
 :zip => The zipcode to search within
 :radius => The distance from the zipcode to include in the search
+:user => The registered user - this limits the results to those within the user's favorite artists
 
 ie: JamBase4R::API.search(:band => "A Band", :zip => "90210", :radius => 20)
     JamBase4R::API.search_by_artist("A Band", {:zip => "90210"})
     JamBase4R::API.search_by_zipcode("90210")
+    JamBase4R::API.search_by_user("Matt")
 
 The general schema of the results is:
 

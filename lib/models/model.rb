@@ -18,7 +18,13 @@ module JamBase4R
     def get_value(element, node_name)
       return if element.blank? || node_name.blank?
       collection = element.get_elements(node_name)
-      return (collection.blank? ? nil : collection.first.get_text.value)
+      return (collection.blank? ? nil : get_element_value(collection.first))
+    end
+    
+    private
+    
+    def get_element_value(element)
+      element.nil? ? nil : (element.get_text.nil? ? nil : element.get_text.value)
     end
     
   end

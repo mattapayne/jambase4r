@@ -6,7 +6,7 @@ module JamBase4R
       include Utility
       
       API_URL = "http://api.jambase.com/search".freeze
-      JAMBASE_PARAMETERS = [:zip, :radius, :band].freeze
+      JAMBASE_PARAMETERS = [:zip, :radius, :band, :user].freeze
       PARAMETER_ALIAS_MAP = {:artist => :band}.freeze
       
       #Search Options:
@@ -30,6 +30,12 @@ module JamBase4R
       #Additional Filters - As above, but without :zip
       def search_by_zipcode(zipcode, additional_filters={})
         additional_filters[:zip] = zipcode
+        return search(additional_filters)
+      end
+      
+      #Additional filters - As above, but without :user
+      def search_by_user(user, additional_filters={})
+        additional_filters[:user] = user
         return search(additional_filters)
       end
     

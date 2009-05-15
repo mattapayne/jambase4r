@@ -14,6 +14,10 @@ describe JamBase4R::API do
     JamBase4R::API.should respond_to(:search_by_zipcode)
   end
   
+  it "should respond_to? search by user" do
+    JamBase4R::API.should respond_to(:search_by_user)
+  end
+  
   it "should respond_to? log_error" do
     JamBase4R::API.should respond_to(:log_error)
   end
@@ -62,6 +66,21 @@ describe JamBase4R::API do
       end
       
     end
+    
+    describe "search_by_user" do
+      
+      it "should replace the value if :user in additional filters" do
+        options = {:user => "A User"}
+        JamBase4R::API.search_by_user("A 2nd User", options)
+        options[:user].should == "A 2nd User"
+      end
+      
+      it "should call search" do
+        JamBase4R::API.should_receive(:search).with({:user => "Mr X"}).and_return(@r)
+        JamBase4R::API.search_by_user("Mr X")
+      end
+      
+    end
   
     describe "search_by_artist" do
       
@@ -97,7 +116,7 @@ describe JamBase4R::API do
     describe "Search" do
       
       def default_search_args
-        {:artist => "Some Band", :zip => "90210", :radius => 50}
+        {:artist => "Some Band", :zip => "90210", :radius => 50, :user => "Mr X"}
       end
 
       before(:each) do
@@ -123,7 +142,7 @@ describe JamBase4R::API do
 
       it "should return nil if after cleaning the search args they are empty" do
         search_args = default_search_args.merge(
-          :zip => nil, :radius => "", :artist => "")
+          :zip => nil, :radius => "", :artist => "", :user => "")
         JamBase4R::API.send(:jambase_search, search_args).should be_nil
       end
 
@@ -138,7 +157,7 @@ describe JamBase4R::API do
         url = "http://api.jambase.com/search?band=Some+Band&apikey=dfsffd"
         @gateway.should_receive(:get).with(url).and_return(@resp)
         JamBase4R::API.send(:jambase_search, default_search_args.merge(
-            :zip => nil, :radius => nil))
+            :zip => nil, :radius => nil, :user => nil))
       end
       
     end
