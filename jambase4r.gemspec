@@ -1,8 +1,8 @@
 #The GemSpec to build the gem
 Gem::Specification.new do |s|
   s.name = 'jambase4r'
-  s.version = '1.1.2'
-  s.date = "2009-05-15"
+  s.version = '1.1.3'
+  s.date = "2012-01-25"
   s.summary = "Ruby JamBase API library."
   s.description = %{A Ruby library use to access the JamBase API.}
   s.has_rdoc = false
