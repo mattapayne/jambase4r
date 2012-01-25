@@ -1,9 +1,9 @@
 require 'rubygems' unless defined? RubyGems
-require 'spec'
+require 'rspec'
 local_dir = File.join(File.dirname(__FILE__), "..", "lib")
 require File.join(local_dir, 'jambase4r')
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
 
 end
 
